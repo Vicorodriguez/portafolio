@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RODRÍGUEZ — Visual Artist Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Archivo Black / Syne for Logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        siteBg: '#ffffff',
+                        navText: '#555555',
+                        navHover: '#000000',
+                        borderLight: '#e5e5e5',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        logo: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Minimalist Light Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d1d1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999999;
+        }
+
+        /* Image Grid Hover Transitions */
+        .art-card {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background-color: #f3f3f3;
+        }
+        
+        .art-img {
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .art-card:hover .art-img {
+            transform: scale(1.03);
+        }
+
+        /* Active Navigation Link Indicator */
+        .nav-link {
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        .nav-link.active {
+            color: #000000;
+            font-weight: 700;
+        }
+
+        /* Smooth Hide/Show Transition for Filtering */
+        .grid-item {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .grid-item.hide {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-black selection:text-white min-h-screen flex flex-col justify-between bg-white text-black">
+
+    <!-- Header / Navigation Bar (EXACT matches danilolaynes.com layout) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-borderLight transition-all py-5">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-8 flex items-center justify-between">
+            
+            <!-- Left Navigation Menu Links -->
+            <nav class="hidden lg:flex items-center space-x-6 text-[13px] font-medium uppercase tracking-wider text-navText">
+                <button onclick="filterCategory('all', this)" class="nav-link active hover:text-black">PROJECTS</button>
+                <button onclick="filterCategory('character', this)" class="nav-link hover:text-black">CHARACTER DESIGN</button>
+                <button onclick="filterCategory('commercial', this)" class="nav-link hover:text-black">COMERCIAL WORK</button>
+                <button onclick="openSectionModal('bio')" class="nav-link hover:text-black">BIO</button>
+                <button onclick="openSectionModal('contact')" class="nav-link hover:text-black">CONTACT</button>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="lg:hidden text-black focus:outline-none p-1">
+                <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+            </button>
+
+            <!-- Centered Stylized Logo / Brand Name -->
+            <a href="#" onclick="filterCategory('all', document.querySelector('.nav-link'))" class="text-2xl sm:text-3xl font-black tracking-tighter uppercase text-black font-logo hover:opacity-80 transition-opacity">
+                RODRÍGUEZ
+            </a>
+
+            <!-- Right Social Icons -->
+            <div class="flex items-center space-x-4 text-black text-lg">
+                <a href="https://behance.net" target="_blank" rel="noopener" class="hover:opacity-60 transition-opacity font-bold text-base leading-none" title="Behance">
+                    Bē
+                </a>
+                <a href="https://instagram.com/vicorodriguezgz" target="_blank" rel="noopener" class="hover:opacity-60 transition-opacity text-base" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-borderLight px-6 py-4 space-y-3 text-xs font-semibold tracking-wider uppercase text-navText mt-3">
+            <button onclick="filterCategory('all', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">PROJECTS</button>
+            <button onclick="filterCategory('character', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">CHARACTER DESIGN</button>
+            <button onclick="filterCategory('commercial', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">COMERCIAL WORK</button>
+            <button onclick="openSectionModal('bio'); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">BIO</button>
+            <button onclick="openSectionModal('contact'); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">CONTACT</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container: ONLY IMAGES GALLERY GRID -->
+    <main class="flex-grow py-2 sm:py-3">
+        <div class="max-w-[1700px] mx-auto px-2 sm:px-3">
+            
+            <!-- Force 4-Column Image Grid Across All Sizes (8 total images fit on screen) -->
+            <div id="galleryGrid" class="grid grid-cols-4 gap-2 sm:gap-2.5">
+                
+                <!-- Tile 1 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Character Illustration Art 1" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 2 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Comercial Work Poster" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 3 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(2)">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Comic Art & Fantasy Character" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 4 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(3)">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Gig Poster Illustration" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 5 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(4)">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Vibrant Creature Design" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 6 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(5)">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Brand Editorial Artwork" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 7 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(6)">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Pop Graphic Surrealism" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 8 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(7)">
+                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Pattern & Texture Design" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 9 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(8)">
+                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Symbolic Character Design" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 10 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(9)">
+                    <img src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Festival Cover Art" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 11 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(10)">
+                    <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Fantasy Warrior Concept" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 12 -->
+                <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(11)">
+                    <img src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Limited Edition Print" 
+                         class="art-img">
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimalist Footer -->
+    <footer class="py-6 border-t border-borderLight bg-white">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 uppercase tracking-widest font-medium gap-2">
+            <p>© <span id="year"></span> VICTORIA RODRÍGUEZ. ALL RIGHTS RESERVED.</p>
+            <p class="text-gray-400">BUENOS AIRES — ARTIST & ILLUSTRATOR</p>
+        </div>
+    </footer>
+
+    <!-- Clean Lightbox Modal for Full Image View -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-white/98 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4 sm:p-8">
+        
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-black hover:opacity-50 text-2xl z-20 p-2 focus:outline-none">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Previous / Next Controls -->
+        <button onclick="navigateLightbox(-1)" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-black hover:opacity-50 text-2xl z-20 p-4 focus:outline-none">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button onclick="navigateLightbox(1)" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 text-black hover:opacity-50 text-2xl z-20 p-4 focus:outline-none">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Image & Caption Container -->
+        <div class="max-w-5xl w-full h-full flex flex-col items-center justify-center space-y-4 py-8">
+            <img id="lightboxImg" src="" alt="" class="max-h-[80vh] w-auto object-contain shadow-sm">
+            <div class="text-center space-y-1">
+                <h3 id="lightboxTitle" class="text-sm font-bold uppercase tracking-wider text-black">Project Title</h3>
+                <p id="lightboxCategory" class="text-xs text-gray-500 uppercase tracking-widest">Character Design — 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bio / Contact Overlay Modal -->
+    <div id="sectionModal" class="fixed inset-0 z-50 bg-white hidden opacity-0 transition-opacity duration-200 overflow-y-auto p-6 sm:p-12">
+        <div class="max-w-3xl mx-auto pt-12 relative">
+            <button onclick="closeSectionModal()" class="absolute top-0 right-0 text-black hover:opacity-50 text-3xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Bio Content -->
+            <div id="bioContent" class="hidden space-y-8">
+                <h2 class="text-3xl font-black uppercase tracking-tight text-black">BIOGRAPHY</h2>
+                <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+                    <p>
+                        Victoria Rodríguez is an illustrator, visual artist, and character designer based in Buenos Aires, Argentina.
+                    </p>
+                    <p>
+                        Her work combines vivid pop-culture influences, surreal character mythology, high-contrast palette selections, and custom editorial poster art for commercial brands, independent bands, and international commissions.
+                    </p>
+                </div>
+                <div class="pt-6 border-t border-borderLight space-y-3 text-xs uppercase tracking-wider text-gray-500">
+                    <p class="font-bold text-black">SELECTED CLIENTS & PROJECTS:</p>
+                    <p>Custom Merch • Festival Posters • Character Design • Editorial Covers</p>
+                </div>
+            </div>
+
+            <!-- Contact Content -->
+            <div id="contactContent" class="hidden space-y-8">
+                <h2 class="text-3xl font-black uppercase tracking-tight text-black">CONTACT</h2>
+                <p class="text-sm text-gray-600">Available for commissions, character design, poster art, and collaboration requests worldwide.</p>
+                
+                <div class="space-y-4 pt-2">
+                    <div>
+                        <span class="block text-xs uppercase font-bold text-gray-400 tracking-wider">DIRECT EMAIL</span>
+                        <a href="mailto:hola@victoriarodriguez.art" class="text-lg font-bold text-black hover:underline">hola@victoriarodriguez.art</a>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase font-bold text-gray-400 tracking-wider mb-2">SOCIAL</span>
+                        <div class="flex space-x-6 text-sm uppercase font-bold text-black">
+                            <a href="https://instagram.com/vicorodriguezgz" target="_blank" class="hover:opacity-60"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                            <a href="https://behance.net" target="_blank" class="hover:opacity-60">Behance</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Artwork Data Set
+        const galleryData = [
+            { title: "Solar Guardian", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Internal Symbolism", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000&auto=format&fit=crop" },
+            { title: "High Artificer", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Gig Poster Series", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Flame Sprite", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Editorial Brand Illustration", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Cosmic Realm", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Alien World Pattern", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Masked Entity", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Festival Cover Art", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Digital Concept Poster", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Limited Print Edition", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?q=80&w=1000&auto=format&fit=crop" }
+        ];
+
+        let currentActiveIndex = 0;
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        }
+
+        // Category Filter
+        function filterCategory(cat, btnElement) {
+            closeSectionModal();
+
+            // Highlight Active Link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active', 'font-bold');
+            });
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+
+            const items = document.querySelectorAll('.grid-item');
+            items.forEach(item => {
+                const itemCat = item.getAttribute('data-category');
+                if (cat === 'all' || itemCat === cat) {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                }
+            });
+        }
+
+        // Lightbox Modal Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxCategory = document.getElementById('lightboxCategory');
+
+        function openLightbox(index) {
+            currentActiveIndex = index;
+            updateLightboxData();
+            lightbox.classList.remove('hidden');
+            setTimeout(() => lightbox.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('opacity-100');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 200);
+        }
+
+        function navigateLightbox(dir) {
+            currentActiveIndex += dir;
+            if (currentActiveIndex < 0) currentActiveIndex = galleryData.length - 1;
+            if (currentActiveIndex >= galleryData.length) currentActiveIndex = 0;
+            updateLightboxData();
+        }
+
+        function updateLightboxData() {
+            const item = galleryData[currentActiveIndex];
+            lightboxImg.src = item.src;
+            lightboxTitle.textContent = item.title;
+            lightboxCategory.textContent = item.category;
+        }
+
+        // Section Modals (Bio / Contact)
+        const sectionModal = document.getElementById('sectionModal');
+        const bioContent = document.getElementById('bioContent');
+        const contactContent = document.getElementById('contactContent');
+
+        function openSectionModal(section) {
+            sectionModal.classList.remove('hidden');
+            setTimeout(() => sectionModal.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+
+            if (section === 'bio') {
+                bioContent.classList.remove('hidden');
+                contactContent.classList.add('hidden');
+            } else {
+                contactContent.classList.remove('hidden');
+                bioContent.classList.add('hidden');
+            }
+        }
+
+        function closeSectionModal() {
+            sectionModal.classList.remove('opacity-100');
+            setTimeout(() => {
+                sectionModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 200);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+            if (!sectionModal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeSectionModal();
+            }
+        });
+    </script>
+</body>
+</html>
