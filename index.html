@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter & Archivo Black / Syne for Logo -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -102,17 +102,21 @@
 </head>
 <body class="selection:bg-black selection:text-white min-h-screen flex flex-col justify-between bg-white text-black">
 
-    <!-- Header / Navigation Bar (EXACT matches danilolaynes.com layout) -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-borderLight transition-all py-5">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-8 flex items-center justify-between">
+    <!-- Header / Navigation Bar con Logo más grande -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-borderLight transition-all py-6">
+        <div class="max-w-[1300px] mx-auto px-6 sm:px-12 grid grid-cols-3 items-center">
             
-            <!-- Left Navigation Menu Links -->
-            <nav class="hidden lg:flex items-center space-x-6 text-[13px] font-medium uppercase tracking-wider text-navText">
-                <button onclick="filterCategory('all', this)" class="nav-link active hover:text-black">PROJECTS</button>
-                <button onclick="filterCategory('character', this)" class="nav-link hover:text-black">CHARACTER DESIGN</button>
-                <button onclick="filterCategory('commercial', this)" class="nav-link hover:text-black">COMERCIAL WORK</button>
-                <button onclick="openSectionModal('bio')" class="nav-link hover:text-black">BIO</button>
-                <button onclick="openSectionModal('contact')" class="nav-link hover:text-black">CONTACT</button>
+            <!-- Left Navigation Menu Links (Projects arriba, Contact abajo) -->
+            <nav class="hidden lg:flex flex-col items-start space-y-1 text-[13px] font-medium uppercase tracking-wider text-navText">
+                <div class="flex items-center space-x-6">
+                    <button onclick="filterCategory('all', this)" class="nav-link active hover:text-black">PROJECTS</button>
+                    <button onclick="filterCategory('character', this)" class="nav-link hover:text-black">CHARACTER DESIGN</button>
+                    <button onclick="filterCategory('commercial', this)" class="nav-link hover:text-black">COMERCIAL WORK</button>
+                    <button onclick="openSectionModal('bio')" class="nav-link hover:text-black">BIO</button>
+                </div>
+                <div>
+                    <button onclick="openSectionModal('contact')" class="nav-link hover:text-black">CONTACT</button>
+                </div>
             </nav>
 
             <!-- Mobile Menu Toggle Button -->
@@ -120,13 +124,15 @@
                 <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
             </button>
 
-            <!-- Centered Stylized Logo / Brand Name -->
-            <a href="#" onclick="filterCategory('all', document.querySelector('.nav-link'))" class="text-2xl sm:text-3xl font-black tracking-tighter uppercase text-black font-logo hover:opacity-80 transition-opacity">
-                VICO 
-            </a>
+            <!-- Centered Logo Image (Aumentado de tamaño con h-14 sm:h-20) -->
+            <div class="flex justify-center">
+                <a href="#" onclick="filterCategory('all', document.querySelector('.nav-link'))" class="hover:opacity-80 transition-opacity flex items-center justify-center">
+                    <img src="img/vico-logo.jpeg" alt="VICO" class="h-20 sm:h-28 w-auto object-contain">
+                </a>
+            </div>
 
             <!-- Right Social Icons -->
-            <div class="flex items-center space-x-4 text-black text-lg">
+            <div class="flex items-center justify-end space-x-4 text-black text-lg">
                 <a href="https://behance.net" target="_blank" rel="noopener" class="hover:opacity-60 transition-opacity font-bold text-base leading-none" title="Behance">
                     Bē
                 </a>
@@ -149,7 +155,6 @@
 
     <!-- Main Content Container: ONLY IMAGES GALLERY GRID -->
     <main class="flex-grow py-8 sm:py-12">
-        <!-- Contenedor con ancho máximo centrado -->
         <div class="max-w-[1300px] mx-auto px-6 sm:px-12">
             
             <!-- Grid de 4 columnas con separación milimétrica sutil (gap-1) -->
@@ -245,7 +250,7 @@
 
     <!-- Minimalist Footer -->
     <footer class="py-6 border-t border-borderLight bg-white">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 uppercase tracking-widest font-medium gap-2">
+        <div class="max-w-[1300px] mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 uppercase tracking-widest font-medium gap-2">
             <p>© <span id="year"></span> VICTORIA RODRÍGUEZ. ALL RIGHTS RESERVED.</p>
             <p class="text-gray-400">BUENOS AIRES — ARTIST & ILLUSTRATOR</p>
         </div>
