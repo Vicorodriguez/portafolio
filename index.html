@@ -12,7 +12,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <style>
+  /* Suaviza la reducción de tamaño de las miniaturas de tus obras */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+    </style>
     <script>
         tailwind.config = {
             theme: {
@@ -115,7 +122,7 @@
 
             <!-- Centered Stylized Logo / Brand Name -->
             <a href="#" onclick="filterCategory('all', document.querySelector('.nav-link'))" class="text-2xl sm:text-3xl font-black tracking-tighter uppercase text-black font-logo hover:opacity-80 transition-opacity">
-                RODRÍGUEZ
+                VICO 
             </a>
 
             <!-- Right Social Icons -->
@@ -149,42 +156,42 @@
                 
                 <!-- Tile 1 -->
                 <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(0)">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="img/arboladachico.jpeg" 
                          alt="Character Illustration Art 1" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 2 -->
                 <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(1)">
-                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="img/Campanariochico.jpg" 
                          alt="Comercial Work Poster" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 3 -->
                 <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(2)">
-                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="img/arroyochico.jpg" 
                          alt="Comic Art & Fantasy Character" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 4 -->
                 <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(3)">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="img/cerroottochico.jpg" 
                          alt="Gig Poster Illustration" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 5 -->
                 <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="character" onclick="openLightbox(4)">
-                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="img/lola2chico.jpg" 
                          alt="Vibrant Creature Design" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 6 -->
                 <div class="grid-item art-card aspect-[4/5] max-h-[38vh]" data-category="commercial" onclick="openLightbox(5)">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="img/danteperro.jpeg" 
                          alt="Brand Editorial Artwork" 
                          class="art-img">
                 </div>
@@ -320,17 +327,16 @@
     <script>
         // Artwork Data Set
         const galleryData = [
-            { title: "Solar Guardian", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Internal Symbolism", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000&auto=format&fit=crop" },
-            { title: "High Artificer", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Gig Poster Series", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Flame Sprite", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Editorial Brand Illustration", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Cosmic Realm", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Alien World Pattern", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Masked Entity", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Festival Cover Art", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?q=80&w=1000&auto=format&fit=crop" },
-            { title: "Digital Concept Poster", category: "CHARACTER DESIGN", src: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" },
+            { title: "Solar Guardian", category: "CHARACTER DESIGN", src: "img/arbolada1.jpeg" },
+            { title: "High Artificer", category: "CHARACTER DESIGN", src: "img/Campanario.jpg" },
+            { title: "Gig Poster Series", category: "COMERCIAL WORK", src: "img/arroyo1.jpg" },
+            { title: "Flame Sprite", category: "CHARACTER DESIGN", src: "img/cerrootto.jpg" },
+            { title: "Editorial Brand Illustration", category: "COMERCIAL WORK", src: "img/lola2.jpg" },
+            { title: "Cosmic Realm", category: "CHARACTER DESIGN", src: "img/danteperro.jpeg" },
+            { title: "Alien World Pattern", category: "COMERCIAL WORK", src: "img/alien.jpg" },
+            { title: "Masked Entity", category: "CHARACTER DESIGN", src: "img/masked.jpg" },
+            { title: "Festival Cover Art", category: "COMERCIAL WORK", src: "img/festival.jpg" },
+            { title: "Digital Concept Poster", category: "CHARACTER DESIGN", src: "img/digital.jpg" },
             { title: "Limited Print Edition", category: "COMERCIAL WORK", src: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?q=80&w=1000&auto=format&fit=crop" }
         ];
 
