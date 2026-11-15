@@ -110,8 +110,8 @@
             <nav class="hidden lg:flex flex-col items-start space-y-1 text-[13px] font-medium uppercase tracking-wider text-navText">
                 <div class="flex items-center space-x-6">
                     <button onclick="filterCategory('all', this)" class="nav-link active hover:text-black">PROJECTS</button>
-                    <button onclick="filterCategory('character', this)" class="nav-link hover:text-black">CHARACTER DESIGN</button>
-                    <button onclick="filterCategory('commercial', this)" class="nav-link hover:text-black">COMERCIAL WORK</button>
+                    <button onclick="filterCategory('original', this)" class="nav-link hover:text-black">ORIGINAL WORKS</button>
+                    <button onclick="filterCategory('private', this)" class="nav-link hover:text-black">PRIVATE COMMISSIONS</button>
                     <button onclick="openSectionModal('bio')" class="nav-link hover:text-black">BIO</button>
                 </div>
                 <div>
@@ -146,8 +146,8 @@
         <!-- Mobile Dropdown Navigation -->
         <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-borderLight px-6 py-4 space-y-3 text-xs font-semibold tracking-wider uppercase text-navText mt-3">
             <button onclick="filterCategory('all', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">PROJECTS</button>
-            <button onclick="filterCategory('character', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">CHARACTER DESIGN</button>
-            <button onclick="filterCategory('commercial', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">COMERCIAL WORK</button>
+            <button onclick="filterCategory('original', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">ORIGINAL WORKS</button>
+            <button onclick="filterCategory('private', this); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">PRIVATE COMMISSIONS</button>
             <button onclick="openSectionModal('bio'); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">BIO</button>
             <button onclick="openSectionModal('contact'); toggleMobileMenu();" class="block w-full text-left py-1 hover:text-black">CONTACT</button>
         </div>
@@ -161,86 +161,86 @@
             <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-1">
                 
                 <!-- Tile 1 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="character" onclick="openLightbox(0)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(0)">
                     <img src="img/arboladachico.jpeg" 
-                         alt="Character Illustration Art 1" 
+                         alt="Original Natural World" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 2 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="commercial" onclick="openLightbox(1)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(1)">
                     <img src="img/Campanariochico.jpg" 
-                         alt="Comercial Work Poster" 
+                         alt="Original Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 3 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="character" onclick="openLightbox(2)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(2)">
                     <img src="img/arroyochico.jpg" 
-                         alt="Comic Art & Fantasy Character" 
+                         alt="Original Natural World" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 4 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="commercial" onclick="openLightbox(3)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(3)">
                     <img src="img/cerroottochico.jpg" 
-                         alt="Gig Poster Illustration" 
+                         alt="Original Natural World" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 5 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="character" onclick="openLightbox(4)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(4)">
                     <img src="img/lola2chico.jpg" 
-                         alt="Vibrant Creature Design" 
+                         alt="Original Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 6 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="commercial" onclick="openLightbox(5)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="private" onclick="openLightbox(5)">
                     <img src="img/danteperro.jpeg" 
-                         alt="Brand Editorial Artwork" 
+                         alt="Private Commission Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 7 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="character" onclick="openLightbox(6)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="private" onclick="openLightbox(6)">
                     <img src="img/caniche.jpg" 
-                         alt="Pop Graphic Surrealism" 
+                         alt="Private Commission Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 8 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="commercial" onclick="openLightbox(7)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="private" onclick="openLightbox(7)">
                     <img src="img/caniche3.jpg" 
-                         alt="Pattern & Texture Design" 
+                         alt="Private Commission Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 9 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="character" onclick="openLightbox(8)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="private" onclick="openLightbox(8)">
                     <img src="img/tortugamuralazul.jpg" 
-                         alt="Symbolic Character Design" 
+                         alt="Original Mural Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 10 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="commercial" onclick="openLightbox(9)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="Private" onclick="openLightbox(9)">
                     <img src="img/muralverde.jpg" 
-                         alt="Festival Cover Art" 
+                         alt="Original Mural Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 11 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="character" onclick="openLightbox(10)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="private" onclick="openLightbox(10)">
                     <img src="img/florpiba.png" 
-                         alt="Fantasy Warrior Concept" 
+                         alt="Original Fantasy Artwork" 
                          class="art-img">
                 </div>
 
                 <!-- Tile 12 -->
-                <div class="grid-item art-card aspect-[4/5]" data-category="commercial" onclick="openLightbox(11)">
+                <div class="grid-item art-card aspect-[4/5]" data-category="private" onclick="openLightbox(11)">
                     <img src="img/espejo.jpg" 
-                         alt="Limited Edition Print" 
+                         alt="Private Commission Artwork" 
                          class="art-img">
                 </div>
 
@@ -277,7 +277,7 @@
             <img id="lightboxImg" src="" alt="" class="max-h-[80vh] w-auto object-contain shadow-sm">
             <div class="text-center space-y-1">
                 <h3 id="lightboxTitle" class="text-sm font-bold uppercase tracking-wider text-black">Project Title</h3>
-                <p id="lightboxCategory" class="text-xs text-gray-500 uppercase tracking-widest">Character Design — 2026</p>
+                <p id="lightboxCategory" class="text-xs text-gray-500 uppercase tracking-widest">— 2026</p>
             </div>
         </div>
     </div>
@@ -309,18 +309,18 @@
             <!-- Contact Content -->
             <div id="contactContent" class="hidden space-y-8">
                 <h2 class="text-3xl font-black uppercase tracking-tight text-black">CONTACT</h2>
-                <p class="text-sm text-gray-600">Available for commissions, character design, poster art, and collaboration requests worldwide.</p>
+                <p class="text-sm text-gray-600">Available for commissions, and collaboration requests worldwide.</p>
                 
                 <div class="space-y-4 pt-2">
                     <div>
                         <span class="block text-xs uppercase font-bold text-gray-400 tracking-wider">DIRECT EMAIL</span>
-                        <a href="mailto:hola@victoriarodriguez.art" class="text-lg font-bold text-black hover:underline">hola@victoriarodriguez.art</a>
+                        <a href="mailto:hola@victoriarodriguez.art" class="text-lg font-bold text-black hover:underline">victoriarodriguezale@gmail.com</a>
                     </div>
                     <div>
                         <span class="block text-xs uppercase font-bold text-gray-400 tracking-wider mb-2">SOCIAL</span>
                         <div class="flex space-x-6 text-sm uppercase font-bold text-black">
                             <a href="https://instagram.com/vicorodriguezgz" target="_blank" class="hover:opacity-60"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                            <a href="https://behance.net" target="_blank" class="hover:opacity-60">Behance</a>
+                            <a href="https://behance.net/vicorodriguezgz" target="_blank" class="hover:opacity-60">Behance</a>
                         </div>
                     </div>
                 </div>
