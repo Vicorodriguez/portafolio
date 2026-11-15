@@ -160,6 +160,33 @@
             <!-- Grid de 4 columnas con separación milimétrica sutil (gap-1) -->
             <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-1">
                 
+                 <!-- Tile 1 -->
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(0)">
+                    <img src="img/playajorg.JPG" 
+                         alt="Original Natural World" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 2 -->
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(1)">
+                    <img src="img/playaninias.jpg" 
+                         alt="Original Artwork" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 3 -->
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(2)">
+                    <img src="img/atardecerplaya.jpg" 
+                         alt="Original Natural World" 
+                         class="art-img">
+                </div>
+
+                <!-- Tile 4 -->
+                <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(3)">
+                    <img src="img/amanecerplaya.jpg" 
+                         alt="Original Natural World" 
+                         class="art-img">
+                </div>
                 <!-- Tile 1 -->
                 <div class="grid-item art-card aspect-[4/5]" data-category="original" onclick="openLightbox(0)">
                     <img src="img/arquera.jpeg" 
@@ -361,6 +388,10 @@
     <script>
         // Artwork Data Set
         const galleryData = [
+            { title: "Playa Mediodia", category: "ORIGINAL WORK", src: "img/playajorg.JPG" },
+            { title: "Jugando", category: "ORIGINAL WORK", src: "img/playaninias.jpg" },
+            { title: "Atardecer en la playa", category: "PRIVATE COMMISSIONS", src: "img/atardecerplaya.jpg" },
+            { title: "Amanecer Costa", category: "ORIGINAL WORK", src: "img/amanecerplaya.jpg" },
             { title: "Arquera", category: "ORIGINAL WORK", src: "img/arquera.jpeg" },
             { title: "Luna llena", category: "ORIGINAL WORK", src: "img/grecia.jpeg" },
             { title: "La ternura", category: "PRIVATE COMMISSIONS", src: "img/caballoninio.jpg" },
